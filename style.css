@@ -27,6 +27,10 @@ p {
   max-width: 840px;
 }
 
+input[type="text"] {
+  width: 85%;
+}
+
 .hidden {
   display: none;
 }
