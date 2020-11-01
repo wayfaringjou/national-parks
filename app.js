@@ -29,7 +29,7 @@ function displayParksResults(bodyJson) {
           <h3>${dataItem.fullName} (${dataItem.states})</h3>
           <img src="${dataItem.images[0].url}" alt="${dataItem.images[0].altText}" />
           <p>${dataItem.description}</p>
-          <a href="${dataItem.url}">${dataItem.url}</a>
+          <a href="${dataItem.url}" target="_blank">${dataItem.url}</a>
           <h4>Address:</h4>
           <p>
             ${dataItem.addresses[0].line1}</br>
