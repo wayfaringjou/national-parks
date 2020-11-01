@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Parks By Region</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>Find National Parks</h1>
+    </header>
+    <main>
+      <section id="search-form">
+        <form action="" class="js-national-parks-form">
+          <fieldset>
+            <legend>Search for National Parks By Area</legend>
+            <h2>
+              Enter state name, state code or part of a state name. For multiple states enter list separated by a comma.
+            </h2>
+            <h3>Select the maximum number of results to be displayed from 1 to 50.</h3>
+            <label for="search-state">State(s)</label>
+            <input
+              required
+              type="text"
+              name="search-state"
+              id="search-state"
+              pattern="(([a-zA-Z]{2,})+,{0,1} {0,})+"
+              placeholder="e.g. NC, Oregon, AK, Colo"
+            />
+            <label for="max-results">Max Results</label>
+            <input
+              type="number"
+              name="max-results"
+              id="max-results"
+              min="1"
+              max="50"
+              value="10"
+            />
+            <button type="submit" id="search-submit">Search</button>
+          </fieldset>
+        </form>
+      </section>
+      <section id="js-messages">
+      </section>
+      <section id="search-results" class="hidden">
+        <h2>Search Results</h2>
+        <ul id="results-list"></ul>
+      </section>
+    </main>
+    <script src="states_hash.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
