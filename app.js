@@ -8,14 +8,10 @@ let foundStates = [];
 function generateSearchString(params) {
   const searchItems = Object.keys(params)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`);
-  console.log(params['stateCode']);
-  console.log(searchItems);
   return searchItems.join('&').replace(/%2C/g, ',');
 }
 
 function displayParksResults(bodyJson) {
-  console.log(bodyJson);
-  console.log(foundStates);
   $('#results-list').empty();
 
   if (bodyJson.data.length === 0) {
@@ -23,12 +19,11 @@ function displayParksResults(bodyJson) {
     $('#js-messages').append(`
     <h2>No Results</h2>`);
   } else {
-    console.log(bodyJson.limit > bodyJson.total);
     $('#js-messages').append(`
       <h3>Showing ${bodyJson.data.length} of ${bodyJson.total} total results. (For States: ${foundStates.join(', ').toUpperCase()})</h3>
     `);
     for (let i = 0; i < bodyJson.data.length; i++) {
-      const dataItem = bodyJson.data[i] ;
+      const dataItem = bodyJson.data[i];
       $('#results-list').append(`
         <li>
           <h3>${dataItem.fullName} (${dataItem.states})</h3>
@@ -76,7 +71,12 @@ function getNationalParks(searchTerm, resultsLimit = 10) {
       throw new Error(response.statusText);
     })
     .then((bodyJson) => displayParksResults(bodyJson))
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      $('#results-list').empty();
+      $('#search-results').addClass('hidden');
+      $('#js-messages').append(`
+      <h3 class="error">Something went wrong: ${error.message}</h3>`);
+    });
 }
 
 function stateNameSearch(stateName) {
@@ -90,7 +90,6 @@ function stateNameSearch(stateName) {
       return stateNameStr;
     }
     let stateCode = statesHash[stateNameStr];
-    console.log(stateCode);
     if (stateCode === undefined) {
       const stateList = Object.keys(statesHash);
       const foundList = [];
@@ -99,7 +98,6 @@ function stateNameSearch(stateName) {
           foundList.push(stateList[i]);
         }
       }
-      console.log(foundList);
       if (foundList.length > 1) {
         throw new Error(
           `More than one name matches '${stateNameStr}'. Maybe you mean one of these: ${foundList.join(', ')}.`,
@@ -114,7 +112,6 @@ function stateNameSearch(stateName) {
     }
     return stateCode;
   } catch (error) {
-    console.log(error);
     $('#js-messages').append(`
     <h3 class="error">${error.message}</h3>`);
   }
@@ -125,7 +122,6 @@ function parseInput(searchTerm) {
   let termsArr;
   if (searchTerm.includes(',')) {
     termsArr = searchTerm.split(',');
-    console.log(termsArr);
     foundStates = termsArr
       .map((i) => stateNameSearch(i))
       .filter((i) => i);
