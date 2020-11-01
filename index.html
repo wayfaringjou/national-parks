@@ -25,11 +25,9 @@
       <section id="search-form">
         <form action="" class="js-national-parks-form">
           <fieldset>
-            <legend>Search for National Parks By Area</legend>
-            <h2>
-              Enter state name, state code or part of a state name. For multiple states enter list separated by a comma.
-            </h2>
-            <h3>Select the maximum number of results to be displayed from 1 to 50.</h3>
+            <legend>Search for National Parks By State</legend>
+            <h2>Enter state name, state code or part of a state name.</h2>
+            <h2>For multiple states enter list separated by a comma.</h2>
             <label for="search-state">State(s)</label>
             <input
               required
@@ -39,21 +37,20 @@
               pattern="(([a-zA-Z]{2,})+,{0,1} {0,})+"
               placeholder="e.g. NC, Oregon, AK, Colo"
             />
+            <h3>Select the maximum number of results to be displayed.</h3>
             <label for="max-results">Max Results</label>
             <input
               type="number"
               name="max-results"
               id="max-results"
               min="1"
-              max="50"
               value="10"
             />
             <button type="submit" id="search-submit">Search</button>
           </fieldset>
         </form>
       </section>
-      <section id="js-messages">
-      </section>
+      <section id="js-messages"></section>
       <section id="search-results" class="hidden">
         <h2>Search Results</h2>
         <ul id="results-list"></ul>

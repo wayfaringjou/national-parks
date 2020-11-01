@@ -1,7 +1,32 @@
-.hidden {
-  display: none;
+body,
+section,
+li,
+p,
+input,
+button,
+legend {
+  padding: 8px;
+  font-family: "Liberation Sans", sans-serif;
+}
+
+header,
+main {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 img {
   width: 35%;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  max-width: 840px;
+}
+
+.hidden {
+  display: none;
 }

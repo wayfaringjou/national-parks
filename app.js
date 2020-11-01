@@ -42,7 +42,7 @@ function displayParksResults(bodyJson) {
             ${dataItem.addresses[0].line3 ? `${dataItem.addresses[0].line3} </br>` : ''}
             ${dataItem.addresses[0].city} ${dataItem.addresses[0].stateCode} ${dataItem.addresses[0].postalCode}
           </p>
-
+          <hr/>
         </li>`);
     }
     $('#search-results').removeClass('hidden');
